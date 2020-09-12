@@ -40,18 +40,35 @@ function runEnter() {
   d3.event.preventDefault();
   
   // Select the input element and get the raw HTML node
+    // Get the value property of the input element
   var inputElement = d3.select("#datetime");
+  var inputCity = d3.select("#city").property("value");
+  var inputState = d3.select("#state").property("value");
+  var inputCountry = d3.select("#country").property("value");
+  var inputShape = d3.select("#shape").property("value");
 
-  // Get the value property of the input element
+  //print input value in console log
   var inputValue = inputElement.property("value");
 
   console.log(inputValue);
   console.log(tableData);
-
+  
+//filtered data
   var filteredData = tableData.filter(i => i.datetime === inputValue);
+  var filteredCity = tableData.filter(i => i.city===inputCity);
+  var filteredState = tableData.filter(i => i.state===inputState);
+  var filteredCountry = tableData.filter(i => i.country===inputCountry);
+  var filteredShape = tableData.filter(i =>i.shape===inputShape);
+
 
   console.log(filteredData);
-  tbody.html("");
+  //clear table body
+  tbody.html(""); 
+//print only filtered data
   ufo(filteredData);
+  ufo(filteredCity);
+  ufo(filteredState);
+  ufo(filteredCountry);
+  ufo(filteredShape);
   };
 
