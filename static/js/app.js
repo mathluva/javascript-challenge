@@ -4,25 +4,27 @@ var tableData = data;
 var tbody = d3.select("tbody")
 
 // Console.log the  data from data.js
-    console.log(data);
+    //console.log(data);
 
 //Use d3 to update each cell's text with values 
+function ufo(data){
+  data.forEach(function(ufodata) {
+      //console.log(ufodata);
+      var row = tbody.append("tr");
+      
+      Object.entries(ufodata).forEach(function([key, value]) {
+    //console.log(key, value);
 
-data.forEach(function(ufodata) {
-    console.log(ufodata);
-    var row = tbody.append("tr");
-    
-    Object.entries(ufodata).forEach(function([key, value]) {
-   console.log(key, value);
+    // Append a cell to the row for each value
 
-   // Append a cell to the row for each value
-
-var cell = row.append("td");
+    var cell = row.append("td");
     cell.text(value);
- });
-});
+  });
+  });
+};
+ufo(tableData);
 // Select the button
-var button = d3.select("#button");
+var button = d3.select("#filter-btn");
 
 // Select the form
 var form = d3.select("#form");
@@ -48,10 +50,8 @@ function runEnter() {
 
   var filteredData = tableData.filter(i => i.datetime === inputValue);
 
-console.log(filteredData);
-var list = d3.select(".summary");
+  console.log(filteredData);
+  tbody.html("");
+  ufo(filteredData);
+  };
 
-
-  // append stats to the list
-  list.append(filteredData);
-};
